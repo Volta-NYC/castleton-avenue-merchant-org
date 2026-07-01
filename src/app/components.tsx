@@ -61,17 +61,29 @@ export function PageHero({
   title,
   intro,
   theme = "paper",
+  imagePosition = "center",
 }: {
   label: string;
   title: string;
   intro: string;
   theme?: "paper" | "black" | "yellow" | "cyan";
+  imagePosition?: "left" | "center" | "right";
 }) {
   return (
-    <section className={`page-hero page-hero-${theme}`}>
-      <p className="section-label">{label}</p>
-      <h1>{title}</h1>
-      <p>{intro}</p>
+    <section
+      className={`page-hero page-hero-${theme} page-hero-image-${imagePosition}`}
+    >
+      <img
+        className="page-hero-image"
+        src="/images/castleton-interior-hero.png"
+        alt=""
+      />
+      <div className="page-hero-scrim" />
+      <div className="page-hero-content">
+        <p className="section-label">{label}</p>
+        <h1>{title}</h1>
+        <p>{intro}</p>
+      </div>
     </section>
   );
 }

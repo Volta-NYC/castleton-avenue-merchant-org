@@ -13,6 +13,7 @@ export default function ResourcesPage() {
         title="Resources for merchants, partners, and neighbors."
         intro="A support hub for membership, permits, marketing, corridor issues, sponsorship, and community coordination."
         theme="yellow"
+        imagePosition="left"
       />
       <section className="resource-page-grid">
         {resourceGroups.map((group) => (

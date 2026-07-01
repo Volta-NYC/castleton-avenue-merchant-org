@@ -20,7 +20,13 @@ export function CategoryPage({
   return (
     <main>
       <SiteHeader />
-      <PageHero label={label} title={title} intro={intro} theme={theme} />
+      <PageHero
+        label={label}
+        title={title}
+        intro={intro}
+        theme={theme}
+        imagePosition={category === "Services" ? "left" : "right"}
+      />
       <section className="explore-layout">
         <aside className="filter-sidebar" aria-label={`${label} filters`}>
           <h2>Explore</h2>

@@ -11,6 +11,7 @@ export default function DirectoryPage() {
         title="Businesses across Castleton Avenue."
         intro="A placeholder directory structure for restaurants, retail, services, wellness, community partners, and future merchant profiles."
         theme="paper"
+        imagePosition="right"
       />
       <section className="explore-layout">
         <aside className="filter-sidebar" aria-label="Directory filters">

@@ -17,6 +17,7 @@ export default function EventsPage() {
         title="Calendar, signature moments, and community programming."
         intro="A dedicated events page for seasonal campaigns, merchant mixers, public space programming, cleanups, and neighborhood celebrations."
         theme="black"
+        imagePosition="center"
       />
       <section className="moment page-moment">
         <div className="moment-date">
