@@ -1,66 +1,16 @@
-const categories = [
-  "Eat & Drink",
-  "Shopping",
-  "Services",
-  "Events",
-  "Visit",
-];
-
-const planningTiles = [
-  {
-    title: "Explore the Avenue",
-    text: "A placeholder guide to storefronts, civic anchors, murals, and neighborhood stops.",
-  },
-  {
-    title: "Merchant Directory",
-    text: "Searchable business profiles will live here once the corridor inventory is ready.",
-  },
-  {
-    title: "Street Events",
-    text: "Seasonal walks, cleanups, networking nights, and community programming.",
-  },
-  {
-    title: "Business Support",
-    text: "Permits, grants, storefront resources, and partner referrals for local merchants.",
-  },
-];
-
-const events = [
-  ["Jul 18", "Summer Sidewalk Saturday", "Castleton Avenue"],
-  ["Aug 06", "Merchant Mixer", "Location TBD"],
-  ["Sep 14", "Corridor Cleanup Day", "Meetup point TBD"],
-];
-
-const directory = [
-  "Restaurants",
-  "Markets",
-  "Salons",
-  "Health",
-  "Professional Services",
-  "Community Partners",
-];
+import Link from "next/link";
+import {
+  businesses,
+  events,
+  planningTiles,
+  resourceGroups,
+} from "@/lib/site-data";
+import { CategoryRail, SiteFooter, SiteHeader } from "./components";
 
 export default function Home() {
   return (
     <main>
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="CAMO home">
-          <span className="brand-mark">CA</span>
-          <span>
-            <strong>CAMO</strong>
-            <small>Castleton Avenue Merchant Organization</small>
-          </span>
-        </a>
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          <a href="#visit">Visit</a>
-          <a href="#events">Events</a>
-          <a href="#directory">Directory</a>
-          <a href="#resources">Resources</a>
-        </nav>
-        <a className="header-action" href="#resources">
-          Join CAMO
-        </a>
-      </header>
+      <SiteHeader />
 
       <section className="hero" id="top">
         <img
@@ -76,51 +26,47 @@ export default function Home() {
             neighbors, events, and everyday Staten Island street life.
           </p>
           <div className="hero-actions">
-            <a className="button primary" href="#directory">
+            <Link className="button primary" href="/directory">
               Find Businesses
-            </a>
-            <a className="button secondary" href="#events">
+            </Link>
+            <Link className="button secondary" href="/events">
               See Events
-            </a>
+            </Link>
           </div>
         </div>
         <div className="hero-panel" aria-label="Upcoming highlight">
           <span>Upcoming</span>
           <strong>Corridor programming calendar</strong>
-          <p>Placeholder details for a merchant walk, clean streets day, and local promotions.</p>
+          <p>
+            Placeholder details for merchant walks, clean streets days, and
+            local promotions.
+          </p>
         </div>
       </section>
 
-      <section className="category-rail" aria-label="Explore categories">
-        {categories.map((category) => (
-          <a href="#visit" key={category}>
-            {category}
-            <span aria-hidden="true">+</span>
-          </a>
-        ))}
-      </section>
+      <CategoryRail />
 
-      <section className="section split" id="visit">
+      <section className="section split">
         <div>
           <p className="section-label">Plan A Visit</p>
           <h2>Everything on the avenue starts with the block.</h2>
         </div>
         <p className="section-intro">
-          Placeholder copy for visitor planning, local shopping, corridor maps,
-          transit notes, and programs that make Castleton Avenue easier to
-          discover.
+          Visitor planning, local shopping, corridor maps, transit notes, and
+          programs now have dedicated pages so the site can grow like a real
+          district portal.
         </p>
       </section>
 
       <section className="tile-grid" aria-label="Visitor and merchant links">
         {planningTiles.map((tile, index) => (
-          <article className="feature-tile" key={tile.title}>
+          <Link className="feature-tile" href={tile.href} key={tile.title}>
             <div className={`tile-photo tile-photo-${index + 1}`} />
             <div>
               <h3>{tile.title}</h3>
               <p>{tile.text}</p>
             </div>
-          </article>
+          </Link>
         ))}
       </section>
 
@@ -136,9 +82,9 @@ export default function Home() {
             tabling, and family-friendly stops along Castleton Avenue.
           </p>
         </div>
-        <a className="button dark" href="#events">
+        <Link className="button dark" href="/events">
           View Calendar
-        </a>
+        </Link>
       </section>
 
       <section className="initiative">
@@ -149,9 +95,9 @@ export default function Home() {
             CAMO will use this space for announcements about beautification,
             safety, wayfinding, merchant support, and corridor marketing.
           </p>
-          <a className="text-link" href="#resources">
+          <Link className="text-link" href="/resources">
             Merchant toolkit
-          </a>
+          </Link>
         </div>
         <div className="initiative-board" aria-hidden="true">
           <span>Clean Streets</span>
@@ -161,61 +107,56 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section events-section" id="events">
+      <section className="section events-section">
         <div className="section-heading-row">
           <div>
             <p className="section-label">Events</p>
             <h2>What is happening on Castleton.</h2>
           </div>
-          <a className="text-link" href="#top">
-            Submit an event
-          </a>
+          <Link className="text-link" href="/events">
+            Full calendar
+          </Link>
         </div>
         <div className="event-list">
-          {events.map(([date, title, location]) => (
-            <article className="event-row" key={title}>
-              <time>{date}</time>
-              <h3>{title}</h3>
-              <p>{location}</p>
+          {events.slice(0, 3).map((event) => (
+            <Link className="event-row" href="/events" key={event.title}>
+              <time>{event.date}</time>
+              <h3>{event.title}</h3>
+              <p>{event.location}</p>
               <span aria-hidden="true">→</span>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
 
-      <section className="directory" id="directory">
+      <section className="directory">
         <p className="section-label">Directory</p>
         <h2>Find local businesses by category.</h2>
         <div className="directory-grid">
-          {directory.map((item) => (
-            <a href="#directory" key={item}>
-              {item}
+          {businesses.slice(0, 6).map((business) => (
+            <Link href="/directory" key={business.name}>
+              {business.category}
               <span aria-hidden="true">↗</span>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
 
-      <section className="resources" id="resources">
+      <section className="resources">
         <div>
           <p className="section-label">Resources</p>
           <h2>For merchants, partners, and neighbors.</h2>
         </div>
         <div className="resource-links">
-          <a href="#resources">Become a member</a>
-          <a href="#resources">Request support</a>
-          <a href="#resources">Sponsor an event</a>
-          <a href="#resources">Contact the board</a>
+          {resourceGroups.map((group) => (
+            <Link href="/resources" key={group.title}>
+              {group.title}
+            </Link>
+          ))}
         </div>
       </section>
 
-      <footer className="footer">
-        <div>
-          <strong>CAMO</strong>
-          <p>Castleton Avenue Merchant Organization</p>
-        </div>
-        <p>Placeholder contact, social, newsletter, and civic partner links.</p>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
