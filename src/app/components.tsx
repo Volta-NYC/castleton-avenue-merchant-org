@@ -61,23 +61,22 @@ export function PageHero({
   title,
   intro,
   theme = "paper",
-  imagePosition = "center",
+  visual = "directory",
 }: {
   label: string;
   title: string;
   intro: string;
   theme?: "paper" | "black" | "yellow" | "cyan";
-  imagePosition?: "left" | "center" | "right";
+  visual?: "visit" | "events" | "directory" | "resources" | "food" | "shopping" | "services";
 }) {
   return (
-    <section
-      className={`page-hero page-hero-${theme} page-hero-image-${imagePosition}`}
-    >
-      <img
-        className="page-hero-image"
-        src="/images/castleton-interior-hero.png"
-        alt=""
-      />
+    <section className={`page-hero page-hero-${theme} page-hero-${visual}`}>
+      <div className="page-hero-visual" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
       <div className="page-hero-scrim" />
       <div className="page-hero-content">
         <p className="section-label">{label}</p>

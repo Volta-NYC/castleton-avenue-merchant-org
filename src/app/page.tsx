@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  businesses,
+  categories,
   events,
   planningTiles,
   resourceGroups,
@@ -13,11 +13,13 @@ export default function Home() {
       <SiteHeader />
 
       <section className="hero" id="top">
-        <img
-          className="hero-image"
-          src="/images/castleton-corridor-hero.png"
-          alt="A lively Castleton Avenue-inspired neighborhood corridor with shops and pedestrians"
-        />
+        <div className="hero-placeholder" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
         <div className="hero-scrim" />
         <div className="hero-content">
           <h1>Castleton Avenue</h1>
@@ -133,9 +135,9 @@ export default function Home() {
         <p className="section-label">Directory</p>
         <h2>Find local businesses by category.</h2>
         <div className="directory-grid">
-          {businesses.slice(0, 6).map((business) => (
-            <Link href="/directory" key={business.name}>
-              {business.category}
+          {categories.slice(0, 3).map((category) => (
+            <Link href={category.href} key={category.href}>
+              {category.title}
               <span aria-hidden="true">↗</span>
             </Link>
           ))}

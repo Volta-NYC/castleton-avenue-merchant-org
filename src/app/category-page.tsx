@@ -16,6 +16,12 @@ export function CategoryPage({
   theme: "paper" | "black" | "yellow" | "cyan";
 }) {
   const listings = businesses.filter((business) => business.category === category);
+  const visual =
+    category === "Eat & Drink"
+      ? "food"
+      : category === "Shopping"
+        ? "shopping"
+        : "services";
 
   return (
     <main>
@@ -25,7 +31,7 @@ export function CategoryPage({
         title={title}
         intro={intro}
         theme={theme}
-        imagePosition={category === "Services" ? "left" : "right"}
+        visual={visual}
       />
       <section className="explore-layout">
         <aside className="filter-sidebar" aria-label={`${label} filters`}>

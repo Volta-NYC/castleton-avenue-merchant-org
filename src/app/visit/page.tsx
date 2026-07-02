@@ -18,7 +18,7 @@ export default function VisitPage() {
         title="Make a day of Castleton Avenue."
         intro="A visitor hub for getting here, finding nearby businesses, planning around events, and discovering the corridor block by block."
         theme="cyan"
-        imagePosition="right"
+        visual="visit"
       />
       <section className="page-band">
         <div className="page-grid two-up">
